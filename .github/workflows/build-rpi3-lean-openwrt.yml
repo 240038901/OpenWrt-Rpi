@@ -12,10 +12,10 @@ on:
   repository_dispatch:
     types: [lean, rpi3]
   workflow_dispatch:
-  schedule:
-    - cron: 0 18 * * *
-#  watch:
-#    types: started
+  #schedule:
+    #- cron: 0 18 * * *
+  watch:
+    types: started
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
@@ -84,6 +84,9 @@ jobs:
         ../$DIY_SH
         ../scripts/preset-clash-core.sh armv8
         ../scripts/preset-terminal-tools.sh
+      
+    - name: SSH connection to Actions
+      uses: P3TERX/ssh2actions@main
 
     - name: Download Package
       id: package
